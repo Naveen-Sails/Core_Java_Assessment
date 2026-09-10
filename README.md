@@ -37,7 +37,6 @@ src/
 bin/
 └── classes/       Compiled Java class files
 
-lib/               External libraries, if needed
 ```
 
 ## Main Classes
