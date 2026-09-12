@@ -16,23 +16,33 @@ public class Database {
     }
 
     public Booking getBookingByGuest(Guest guest){
-        for(Booking booking : bookings){
-            Guest guestObj = booking.getGuest();
-            // Compare guest IDs to find the booking that belongs to this guest.
-            if (guestObj.getId() == guest.getId()){
-                return booking;
-            }
-       
+        //Using Traditional way of Programming
 
-        }
-        return  null;
+        // for(Booking booking : bookings){
+        //     Guest guestObj = booking.getGuest();
+        //     // Compare guest IDs to find the booking that belongs to this guest.
+        //     if (guestObj.getId() == guest.getId()){
+        //         return booking;
+        //     }
+        // }
+        // return  null;
+
+        //Using Functional Programming
+        return bookings.stream()
+                       .filter(booking -> booking.getGuest().getId() == guest.getId())
+                       .findFirst()
+                       .orElse(null);
+
     }
   
     public void printBookings(){
-        for (Booking booking : bookings) {
-            // Print each booking ID stored in the database.
-            System.out.println("booking Id = " + booking.getBookingId());
-        }
+        // for (Booking booking : bookings) {
+        //     // Print each booking ID stored in the database.
+        //     System.out.println("booking Id = " + booking.getBookingId());
+        // }
+
+        bookings.stream()
+            .forEach(booking -> System.out.println("booking Id = " + booking.getBookingId()));
     }
 
     
